@@ -4,10 +4,10 @@ class ListItem extends Component {
   render() {
     return (
       <li
-        onClick={() => this.props.deleteItem(this.props.item)}
-        className={this.props.item.completed ? 'completed-item' : ''}
+        onClick={() => this.props.deleteItem(this.props.task)}
+        className={this.props.task.completed ? 'completed-item' : ''}
       >
-        {this.props.item.text}
+        {this.props.task}
       </li>
     )
   }

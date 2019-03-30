@@ -11,10 +11,12 @@ class ToDoList extends Component {
   }
 
   getApiUrl = () => {
-    return `https://one-list-api.herokuapp.com/items?access_token=${
-      this.state.accessToken
-      }`
+    console.log()
+    return "http://localhost:3000/lists?access_token=xiii"
   }
+
+  // return `https://localhost:3001/lists?access_token=${}`
+  // this.state.accessToken
 
   updateStateWithNewItem = event => {
     this.setState({
@@ -40,18 +42,20 @@ class ToDoList extends Component {
 
   getListFromAPI = () => {
     // go to the API
-    axios.get(this.getApiUrl()).then(resp => {
-      // populate state with the todo list
-      this.setState({
-        todoList: resp.data
+    axios.get(this.getApiUrl())
+      .then(resp => {
+        // populate state with the todo list
+        this.setState({
+          todoList: resp.data
+        })
+        console.log(this.state.todoList)
       })
-    })
   }
 
-  deleteItem = item => {
+  deleteItem = task => {
     const url = `https://one-list-api.herokuapp.com/items/${
-      item.id
-      }?access_token=${this.state.accessToken}`
+      task.id
+      }?access_token = ${this.state.accessToken} `
     axios.delete(url).then(resp => {
       this.getListFromAPI()
     })
@@ -103,7 +107,6 @@ class ToDoList extends Component {
   render() {
     return (
       <>
-        <button onClick={this.resetList}>RESET LIST</button>
         <AddItemForm
           addItemToApi={this.addItemToApi}
           newItemText={this.state.newItemText}
@@ -111,16 +114,18 @@ class ToDoList extends Component {
         />
         <p className="output" />
         <ol className="todo-list">
-          {this.state.todoList.map(item => {
+          {this.state.todoList.map(task_item => {
             return (
               <ListItem
-                key={item.id}
-                item={item}
-                deleteItem={this.deleteItem}
+                key={task_item.id}
+                task={task_item.task}
+                deletetask={this.deletetask}
               />
             )
           })}
         </ol>
+
+        <button onClick={this.resetList}>RESET LIST</button>
       </>
     )
   }
