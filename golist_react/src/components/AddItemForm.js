@@ -7,13 +7,12 @@ class AddItemForm extends Component {
         <input
           type="text"
           id="newItem"
-          placeholder="Add TODO"
+          placeholder="Add a to-do item"
           value={this.props.newItemText}
           onChange={this.props.updateStateWithNewItem}
         />
         <button>
           <i className="fas fa-plus" />
-          ADD
         </button>
       </form>
     )

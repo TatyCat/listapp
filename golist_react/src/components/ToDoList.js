@@ -125,7 +125,7 @@ class ToDoList extends Component {
           })}
         </ol>
 
-        <button onClick={this.resetList}>RESET LIST</button>
+        <button className="reset-button" onClick={this.resetList}>RESET LIST</button>
       </>
     )
   }
