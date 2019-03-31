@@ -7,10 +7,13 @@ class ToDoList extends Component {
   state = {
     newTaskItem: '',
     todoList: [],
-    accessToken: 'xiii'
+    accessToken: 0
   }
 
   getApiUrl = () => {
+    console.log(this.state.accessToken)
+    console.log("http://localhost:3000/lists?access_token=#{this.state.accessToken}")
+
     return `http://localhost:3000/lists?access_token=#{this.state.accessToken}`
   }
 
@@ -44,35 +47,36 @@ class ToDoList extends Component {
         this.setState({
           todoList: resp.data
         })
-        console.log(this.state.todoList)
+        // console.log(this.state.todoList)
       })
   }
 
   // localhost:3000/lists/7?access_token=xiii
   deleteItem = task => {
-    console.log(task)
     const url = `http://localhost:3000/lists/${task}?access_token = ${this.state.accessToken} `
     console.log(url)
-    // axios.delete(url).then(resp => {
-    // this.getListFromAPI()
-    // })
+    axios.delete(url).then(resp => {
+      this.getListFromAPI()
+    })
   }
 
   addItemToApi = event => {
     event.preventDefault()
     axios
       .post(this.getApiUrl(), {
-        task: {
-          text: this.state.newTaskItem
+        "list": {
+          "task": this.state.newTaskItem,
+          "complete": false,
+          "token": this.state.accessToken
         }
       })
       .then(resp => {
+        // update state to clear out the input field
+        this.setState({ newTaskItem: '' })
+        // ***Gavin: Why did I have to add line 76 to clear the input box? Line 74 doens't clear out the input box like it's suppposed to. 
+        document.getElementById("newItem").value = "";
         // get lateset list form API
         this.getListFromAPI()
-        // update state to clear out the input field
-        this.setState({
-          newTaskItem: ''
-        })
       })
   }
 
@@ -80,6 +84,8 @@ class ToDoList extends Component {
     // creat a new string that is 20 random characters long
     return Math.floor(Math.random() * Math.pow(10, 20)).toString()
   }
+
+  // TODO!
 
   resetList = () => {
     // reset the state
@@ -113,11 +119,12 @@ class ToDoList extends Component {
         <ol className="todo-list">
           {this.state.todoList.map(task_item => {
             return (
-              <ListItem
+              < ListItem
                 key={task_item.id}
                 id={task_item.id}
+                complete={task_item.complete}
                 task={task_item.task}
-                deletetask={this.deletetask(this.id)}
+                deleteItem={this.deleteItem}
               />
             )
           })}

@@ -26,6 +26,10 @@ h1 {
   font-family: "Leckerli One", sans-serif;
 }
 
+div {
+  max-width: 80%;
+}
+
 li {
   cursor: pointer;
   margin: 1.6rem;
