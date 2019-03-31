@@ -5,22 +5,18 @@ import ListItem from './ListItem'
 
 class ToDoList extends Component {
   state = {
-    newItemText: '',
+    newTaskItem: '',
     todoList: [],
     accessToken: 'xiii'
   }
 
   getApiUrl = () => {
-    console.log()
-    return "http://localhost:3000/lists?access_token=xiii"
+    return `http://localhost:3000/lists?access_token=#{this.state.accessToken}`
   }
-
-  // return `https://localhost:3001/lists?access_token=${}`
-  // this.state.accessToken
 
   updateStateWithNewItem = event => {
     this.setState({
-      newItemText: event.target.value
+      newTaskItem: event.target.value
     })
   }
 
@@ -52,21 +48,22 @@ class ToDoList extends Component {
       })
   }
 
+  // localhost:3000/lists/7?access_token=xiii
   deleteItem = task => {
-    const url = `https://one-list-api.herokuapp.com/items/${
-      task.id
-      }?access_token = ${this.state.accessToken} `
-    axios.delete(url).then(resp => {
-      this.getListFromAPI()
-    })
+    console.log(task)
+    const url = `http://localhost:3000/lists/${task}?access_token = ${this.state.accessToken} `
+    console.log(url)
+    // axios.delete(url).then(resp => {
+    // this.getListFromAPI()
+    // })
   }
 
   addItemToApi = event => {
     event.preventDefault()
     axios
       .post(this.getApiUrl(), {
-        item: {
-          text: this.state.newItemText
+        task: {
+          text: this.state.newTaskItem
         }
       })
       .then(resp => {
@@ -74,7 +71,7 @@ class ToDoList extends Component {
         this.getListFromAPI()
         // update state to clear out the input field
         this.setState({
-          newItemText: ''
+          newTaskItem: ''
         })
       })
   }
@@ -87,12 +84,12 @@ class ToDoList extends Component {
   resetList = () => {
     // reset the state
     // reset toDoList
-    // reset the newItemText
+    // reset the newTaskItem
     // create new token
     this.setState(
       {
         todoList: [],
-        newItemText: '',
+        newTaskItem: '',
         accessToken: this.generateRandomToken()
       },
       () => {
@@ -109,7 +106,7 @@ class ToDoList extends Component {
       <>
         <AddItemForm
           addItemToApi={this.addItemToApi}
-          newItemText={this.state.newItemText}
+          newTaskItem={this.state.newTaskItem}
           updateStateWithNewItem={this.updateStateWithNewItem}
         />
         <p className="output" />
@@ -118,8 +115,9 @@ class ToDoList extends Component {
             return (
               <ListItem
                 key={task_item.id}
+                id={task_item.id}
                 task={task_item.task}
-                deletetask={this.deletetask}
+                deletetask={this.deletetask(this.id)}
               />
             )
           })}

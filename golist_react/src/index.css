@@ -43,6 +43,7 @@ form button, .todo-list button {
 
 .completed-item {
   text-decoration: line-through;
+  color: rgb(59, 60, 57);
 }
 
 input {
@@ -58,7 +59,7 @@ input {
 form.add-form button {
   border-radius: 5%;
   text-align: center;
-  background-color: whitesmoke;
+  background-color: white;
   border: none;
   overflow: hidden;
   text-decoration: none;
@@ -74,7 +75,7 @@ form.add-form button:hover {
 }
 
 .fa-plus {
-  color: black !important;
+  color: rgb(1, 77, 1);
 }
 
 #newItem {

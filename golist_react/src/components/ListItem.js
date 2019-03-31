@@ -3,11 +3,13 @@ import React, { Component } from 'react'
 class ListItem extends Component {
   render() {
     return (
-      <li
-        onClick={() => this.props.deleteItem(this.props.task)}
-        className={this.props.task.completed ? 'completed-item' : ''}
+      <li key={this.props.id}
+        onClick={() => deleteItem(this.props.id)}
+      // className={this.props.task.completed ? 'completed-item' : ''}
       >
         {this.props.task}
+        {/* {this.props.id} */}
+
       </li>
     )
   }
