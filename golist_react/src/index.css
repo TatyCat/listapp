@@ -47,7 +47,7 @@ form button, .todo-list button {
 
 .completed-item {
   text-decoration: line-through;
-  color: rgb(59, 60, 57);
+  color: rgb(114, 116, 110);
 }
 
 input {
@@ -114,4 +114,27 @@ form.add-form {
 .reset-button:hover {
   background-color: rgb(172, 48, 39);
   color: whitesmoke;
+}
+
+li button {
+  border: none;
+  background-color: transparent;
+}
+
+li button i {
+  background-color: rgba(208, 219, 189, 0.719);
+  margin-right: 1rem;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 3px;
+  border: 1px rgb(158, 160, 155) solid;
+  font-size: 1rem;
+}
+
+button .fa-trash:hover {
+  background-color: rgba(214, 181, 171, 0.719);
+}
+
+button .fa-edit:hover {
+  background-color: rgba(113, 133, 96, 0.719);
 }

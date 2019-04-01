@@ -12,10 +12,12 @@ class ListItem extends Component {
       <li key={this.props.id}
 
         className={this.props.complete ? 'completed-item' : ''}
-        // onClick={() => this.markComplete()}
-        onClick={() => this.props.deleteItem(this.props.id)}
+      // onClick={() => this.markComplete()}
       >
         {this.props.task}
+        <br />
+        <button onClick={() => this.props.deleteItem(this.props.id)}><i class="fas fa-trash"></i></button>
+        <button><i class="fas fa-check"></i></button>
       </ li>
     )
   }

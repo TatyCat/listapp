@@ -7,7 +7,7 @@ class ToDoList extends Component {
   state = {
     newTaskItem: '',
     todoList: [],
-    accessToken: 0
+    accessToken: null
   }
 
   getApiUrl = () => {
