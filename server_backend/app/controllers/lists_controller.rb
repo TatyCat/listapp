@@ -38,6 +38,10 @@ class ListsController < ApplicationController
     @list.destroy
   end
 
+  def destory_all
+     @lists.destroy
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list

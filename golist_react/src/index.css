@@ -30,6 +30,7 @@ div {
   max-width: 80%;
   padding: .5rem;
   background: linear-gradient(45deg, #9cd13f 0%, #a1d252 26%, #80bf1b 59%, #7ab80e 100%);
+  min-height: 100vh;
 }
 
 li {
@@ -74,7 +75,6 @@ form.add-form button {
   font-size: 2vw;
   border: 1px rgb(177, 182, 176) solid;
   max-height: 8vh;
-  /* margin-left: .5vh; */
   padding: 1.2vh;
 }
 

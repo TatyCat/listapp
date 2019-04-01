@@ -121,26 +121,10 @@ class ToDoList extends Component {
     // // reset toDoList
     // // reset the newTaskItem
     // // create new token
-    // this.setState(
-    //   {
-    //     todoList: [],
-    //     newTaskItem: '',
-    //     accessToken: this.generateRandomToken()
-    //   },
-    //   () => {
-    //     console.log(this.state.accessToken)
-    //     this.getListFromAPI()
-    //     // store the new token in localstorage
-    //     localStorage.setItem('list-access-token', this.state.accessToken)
-    //   }
-    // )
-    console.log(this.state.todoList)
 
-    //   const url = `http://localhost:3000/lists/${task}?access_token = ${this.state.accessToken} `
-    //   axios.delete(url).then(resp => {
-    //     this.getListFromAPI()
-    //   })
-    // }
+    axios.delete('http://localhost:3001/lists/destroy_all')
+      .then(() => console.log(this))
+
   }
 
   render() {
