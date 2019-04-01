@@ -77,7 +77,6 @@ class ToDoList extends Component {
         this.getListFromAPI()
       )
     }
-
   }
 
 
@@ -91,22 +90,25 @@ class ToDoList extends Component {
 
   addItemToApi = event => {
     event.preventDefault()
-    axios
-      .post(this.getApiUrl(), {
-        "list": {
-          "task": this.state.newTaskItem,
-          "complete": false,
-          "token": this.state.accessToken
-        }
-      })
-      .then(resp => {
-        // update state to clear out the input field
-        this.setState({ newTaskItem: '' })
-        // ***Gavin: Why did I have to add line 76 to clear the input box? Line 74 doens't clear out the input box like it's suppposed to. 
-        document.getElementById("newItem").value = "";
-        // get lateset list form API
-        this.getListFromAPI()
-      })
+
+    if (this.state.newTaskItem !== "") {
+      axios
+        .post(this.getApiUrl(), {
+          "list": {
+            "task": this.state.newTaskItem,
+            "complete": false,
+            "token": this.state.accessToken
+          }
+        })
+        .then(resp => {
+          // update state to clear out the input field
+          this.setState({ newTaskItem: '' })
+          // ***Gavin: Why did I have to add line 76 to clear the input box? Line 74 doens't clear out the input box like it's suppposed to. 
+          document.getElementById("newItem").value = "";
+          // get lateset list form API
+          this.getListFromAPI()
+        })
+    }
   }
 
   generateRandomToken = () => {
@@ -115,23 +117,30 @@ class ToDoList extends Component {
   }
 
   resetList = () => {
-    // reset the state
-    // reset toDoList
-    // reset the newTaskItem
-    // create new token
-    this.setState(
-      {
-        todoList: [],
-        newTaskItem: '',
-        accessToken: this.generateRandomToken()
-      },
-      () => {
-        console.log(this.state.accessToken)
-        this.getListFromAPI()
-        // store the new token in localstorage
-        localStorage.setItem('list-access-token', this.state.accessToken)
-      }
-    )
+    // // reset the state
+    // // reset toDoList
+    // // reset the newTaskItem
+    // // create new token
+    // this.setState(
+    //   {
+    //     todoList: [],
+    //     newTaskItem: '',
+    //     accessToken: this.generateRandomToken()
+    //   },
+    //   () => {
+    //     console.log(this.state.accessToken)
+    //     this.getListFromAPI()
+    //     // store the new token in localstorage
+    //     localStorage.setItem('list-access-token', this.state.accessToken)
+    //   }
+    // )
+    console.log(this.state.todoList)
+
+    //   const url = `http://localhost:3000/lists/${task}?access_token = ${this.state.accessToken} `
+    //   axios.delete(url).then(resp => {
+    //     this.getListFromAPI()
+    //   })
+    // }
   }
 
   render() {
