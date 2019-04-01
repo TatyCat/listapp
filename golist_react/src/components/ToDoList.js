@@ -49,19 +49,35 @@ class ToDoList extends Component {
   }
 
   // localhost:3000/lists/38?access_token=xiii
-  markComplete = (id) => {
+  markComplete = (id, completion_status) => {
     const url = `http://localhost:3000/lists/${id}?access_token=${this.state.accessToken}`
-    console.log(url)
-    axios.patch(
-      url,
-      {
-        "list": {
-          "complete": true
-        }
-      }
-    )
+    console.log(completion_status)
 
-      .then(this.getListFromAPI())
+    if (!completion_status) {
+      axios.patch(
+        url,
+        {
+          "list": {
+            "complete": true
+          }
+        }
+      ).then(() =>
+        this.getListFromAPI()
+      )
+    }
+    else if (completion_status) {
+      axios.patch(
+        url,
+        {
+          "list": {
+            "complete": false
+          }
+        }
+      ).then(() =>
+        this.getListFromAPI()
+      )
+    }
+
   }
 
 
