@@ -14,7 +14,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: linear-gradient(45deg, #9cd13f 0%, #a1d252 26%, #80bf1b 59%, #7ab80e 100%);
+  background-color: rgb(247, 248, 233);
 }
 
 h1 {
@@ -28,6 +28,8 @@ h1 {
 
 div {
   max-width: 80%;
+  padding: .5rem;
+  background: linear-gradient(45deg, #9cd13f 0%, #a1d252 26%, #80bf1b 59%, #7ab80e 100%);
 }
 
 li {
@@ -51,26 +53,29 @@ form button, .todo-list button {
 }
 
 input {
-  padding: 12px;
-  border: none;
+  padding: 1vw;
   border-bottom: 1px solid #ccc;
   width: 100%;
   border-radius: 3px;
-  margin-right: .4rem;
-  font-size: 2.2vh
+  margin-right: .4vh;
+  font-size: 2.2vh;
+  border: 1px rgb(177, 182, 176) solid;
+  max-height: 1.5rem;
+  overflow: hidden;
 }
 
 form.add-form button {
-  border-radius: 5%;
-  text-align: center;
+  border-radius: 3px;
   background-color: white;
-  border: none;
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
-  white-space: nowrap;
-  height: 5.5vh !important;
-  width: 2.5rem;
+  height: 100%;
+  font-size: 2vw;
+  border: 1px rgb(177, 182, 176) solid;
+  max-height: 8vh;
+  /* margin-left: .5vh; */
+  padding: 1.2vh;
 }
 
 form.add-form button:hover {
@@ -92,7 +97,6 @@ form.add-form {
 }
 
 .reset-button {
-  justify-content: center;
   border-radius: 5%;
   text-align: center;
   padding: 8px 16px;
@@ -108,7 +112,7 @@ form.add-form {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  margin: 4rem 30%;
+  margin: 4rem 20%;
 }
 
 .reset-button:hover {
@@ -129,12 +133,13 @@ li button i {
   border-radius: 3px;
   border: 1px rgb(158, 160, 155) solid;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 button .fa-trash:hover {
   background-color: rgba(214, 181, 171, 0.719);
 }
 
-button .fa-edit:hover {
+button .fa-check:hover {
   background-color: rgba(113, 133, 96, 0.719);
 }

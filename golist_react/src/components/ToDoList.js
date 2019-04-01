@@ -7,13 +7,10 @@ class ToDoList extends Component {
   state = {
     newTaskItem: '',
     todoList: [],
-    accessToken: null
+    accessToken: 'xiii'
   }
 
   getApiUrl = () => {
-    console.log(this.state.accessToken)
-    console.log("http://localhost:3000/lists?access_token=#{this.state.accessToken}")
-
     return `http://localhost:3000/lists?access_token=#{this.state.accessToken}`
   }
 
@@ -51,10 +48,26 @@ class ToDoList extends Component {
       })
   }
 
+  // localhost:3000/lists/38?access_token=xiii
+  markComplete = (id) => {
+    const url = `http://localhost:3000/lists/${id}?access_token=${this.state.accessToken}`
+    console.log(url)
+    axios.patch(
+      url,
+      {
+        "list": {
+          "complete": true
+        }
+      }
+    )
+
+      .then(this.getListFromAPI())
+  }
+
+
   // localhost:3000/lists/7?access_token=xiii
   deleteItem = task => {
     const url = `http://localhost:3000/lists/${task}?access_token = ${this.state.accessToken} `
-    console.log(url)
     axios.delete(url).then(resp => {
       this.getListFromAPI()
     })
@@ -84,8 +97,6 @@ class ToDoList extends Component {
     // creat a new string that is 20 random characters long
     return Math.floor(Math.random() * Math.pow(10, 20)).toString()
   }
-
-  // TODO!
 
   resetList = () => {
     // reset the state
@@ -122,9 +133,10 @@ class ToDoList extends Component {
               < ListItem
                 key={task_item.id}
                 id={task_item.id}
-                complete={task_item.complete}
+                markComplete={this.markComplete}
                 task={task_item.task}
                 deleteItem={this.deleteItem}
+                complete={task_item.complete}
               />
             )
           })}
